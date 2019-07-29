@@ -1,0 +1,29 @@
+{
+  "name": "react-plugin",
+  "version": "1.0.0",
+  "description": "Javascript Interface Library for native analytics sdk of wisetracker.", 
+  "main": "react-plugin",
+  "author": {
+    "name": "wisetracker",
+    "email": "tech@wisetracker.co.kr",
+    "url": "http://www.wisetracker.co.kr/"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WisetrackerTechteam/react-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WisetrackerTechteam/react-plugin/issues"
+  },
+  "homepage": "http://www.wisetracker.co.kr",
+  "keywords": [
+    "wisetracker",
+    "android",
+    "react-native"
+  ],
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "test"
+  }
+}
