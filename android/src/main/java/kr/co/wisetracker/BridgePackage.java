@@ -23,7 +23,7 @@ public class BridgePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new ReactBridge(reactContext));
+        modules.add(new WiseTrackerManager(reactContext));
         return modules;
     }
 

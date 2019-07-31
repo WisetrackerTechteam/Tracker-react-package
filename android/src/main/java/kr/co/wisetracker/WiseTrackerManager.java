@@ -11,18 +11,18 @@ import javax.annotation.Nonnull;
 
 import kr.co.wisetracker.tracker.WiseTracker;
 
-public class ReactBridge extends ReactContextBaseJavaModule {
+public class WiseTrackerManager extends ReactContextBaseJavaModule {
 
-    private final String TAG = "ReactBridge";
+    private final String TAG = "WiseTrackerManager";
 
-    public ReactBridge(@Nonnull ReactApplicationContext reactContext) {
+    public WiseTrackerManager(@Nonnull ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
     @Nonnull
     @Override
     public String getName() {
-        return "ReactBridge";
+        return "WiseTrackerManager";
     }
 
     @ReactMethod

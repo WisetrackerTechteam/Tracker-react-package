@@ -3,4 +3,4 @@
  */
 
 import {NativeModules} from 'react-native';
-module.exports = NativeModules.ReactBridge;
+module.exports = NativeModules.WiseTrackerManager;
