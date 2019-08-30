@@ -5,7 +5,7 @@
 
         <!-- 딥링크로 사용될 값을 직접 수정해 주세요. -->
         <activity
-            android:name="kr.co.wisetracker.tracker.DeepLinkActivity"
+            android:name="kr.co.wisetracker.DeepLinkActivity"
             android:launchMode="singleTop">
 
             <intent-filter>
