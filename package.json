@@ -11,10 +11,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/WisetrackerTechteam/react-plugin.git"
+    "url": "https://github.com/WisetrackerTechteam/Tracker-react-package.git"
   },
   "bugs": {
-    "url": "https://github.com/WisetrackerTechteam/react-plugin/issues"
+    "url": "https://github.com/WisetrackerTechteam/Tracker-react-package/issues"
   },
   "homepage": "http://www.wisetracker.co.kr",
   "keywords": [
