@@ -45,5 +45,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    implementation 'kr.co.wisetracker.insight:SDK_V1:21.3.14'
+    implementation 'kr.co.wisetracker.insight:SDK_V1:21.3.16'
 }
