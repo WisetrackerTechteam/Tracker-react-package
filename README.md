@@ -53,7 +53,7 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 
 ```xml
 <!-- 개발용 true 배포용 false 권장 -->
-<meta-data 
+<meta-data
 	android:name="WiseTrackerLogState" 
 	android:value="true" />
 ```
