@@ -11,7 +11,7 @@ $ npm install --save git+https://github.com/WisetrackerTechteam/Tracker-react-pa
 
 프로젝트에 플러그인이 정상 다운로드되면 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
 
-![]()
+<img src="http://www.wisetracker.co.kr/wp-content/uploads/2019/08/react_node.png" width="400" height="400">
 
 #### 1.3 Wisetracker AppKey 발급
 
