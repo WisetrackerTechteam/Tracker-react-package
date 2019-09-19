@@ -40,16 +40,7 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 
 #### 2.2 AndroidManifest.xml 설정 (/react-plugin/android/src/main/AndroidManifest.xml)
 
-#### a) AppKey 설정
-
- ```xml
-<!--  발급 받은 AppKey 입력 -->
-<meta-data
-    android:name="WiseTrackerKey"
-    android:value="발급 받은 앱키 추가" />
-```
-
-#### b) 디버깅 모드 설정
+#### a) 디버깅 모드 설정
 
 ```xml
 <!-- 개발용 true 배포용 false 권장 -->
@@ -58,7 +49,7 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 	android:value="true" />
 ```
 
-#### c) 딥링크 설정
+#### b) 딥링크 설정
 딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
 
 ```xml
@@ -86,6 +77,7 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 import Wisetracker from 'react-plugin/wrapper/bridge.js';
 
 componentDidMount() {
+    Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");
     Wisetracker.init();
 }
 
