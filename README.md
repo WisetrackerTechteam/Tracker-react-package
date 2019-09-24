@@ -68,6 +68,31 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 ```
 
 ### 3. IOS 리액트 플러그인 설정
+#### 1) XCode 프로젝트 세팅: 아래의 화면과 같이 설치한 플러그인 폴더 아래에 있는 파일들을 프로젝트 경로에 가져다 놓습니다.
+
+<img src="http://www.wisetracker.co.kr/wp-content/uploads/2019/09/react_folder-1.png" width="200" height="300">
+
+#### 2) info.plist파일 디버깅 모드 세팅
+info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를 선탁하신뒤, 아래의 key/value값을 붙혀 넣습니다.
+
+```xml
+// 개발용 true. 배포용 false 권장
+    <key>WiseTrackerLogState</key>
+    <string>true</string>
+```
+
+#### 3) 외부 유입 경로 분석 ( Deeplink )
+앱이 설치된 이후 DeepLink를 통해서 앱이 실행되는 경로 분석이 필요한 경우 
+네이티브 프로젝트의 AppDelegate 정의 항목중 openURL 함수 구현부에 아래와 같이 추가해줍니다.
+
+ #import<WiseTracker/WiseTracker.h> 추가
+
+```Objective-c
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+	[WiseTracker urlRefererCheck:sourceApplication url:url];
+	return YES;
+}
+```
 
 ### 4. 플러그인 초기화
 리액트 프로젝트에서 앱 시작시 최초 로드되는 .js 파일에 플러그인을 초기화하는 코드를 추가합니다.
