@@ -103,7 +103,7 @@ import Wisetracker from 'react-plugin/wrapper/bridge.js';
 
 componentDidMount() {
     Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");
-    Wisetracker.init();
+    Wisetracker.initialization();
 }
 
 ```
