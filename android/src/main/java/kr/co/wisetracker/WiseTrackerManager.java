@@ -26,7 +26,7 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void init() {
+    public void initialization() {
         try {
             Toast.makeText(getReactApplicationContext(), "init", Toast.LENGTH_SHORT).show();
             WiseTracker.init(getReactApplicationContext());
