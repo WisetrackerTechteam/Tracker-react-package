@@ -21,11 +21,6 @@
 
         </activity>
 
-        <!-- 발급 받은 AppKey 추가 -->
-        <meta-data
-            android:name="WiseTrackerKey"
-            android:value="YOUR_APP_KEY" />
-
         <!-- 개발용 true 배포용 false 권장 -->
         <meta-data
             android:name="WiseTrackerLogState"
