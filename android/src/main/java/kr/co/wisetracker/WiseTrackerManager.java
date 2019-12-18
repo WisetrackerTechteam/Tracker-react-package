@@ -127,6 +127,24 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void putInstallReferrer(String referrer) {
+        try {
+            WiseTracker.putInstallReferrer(referrer);
+        } catch (Exception e) {
+            Log.e(TAG, "putSessionReferrer error !!", e);
+        }
+    }
+
+    @ReactMethod
+    public void sendGoalData() {
+        try {
+            WiseTracker.sendGoalData();
+        } catch (Exception e) {
+            Log.e(TAG, "setGoal error !!", e);
+        }
+    }
+
+    @ReactMethod
     public void setGoal(String key, String value) {
         try {
             WiseTracker.setGoal(key, Double.valueOf(value));
@@ -571,7 +589,6 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
             Log.e(TAG, "setWisetrackerAppkey error !!", e);
         }
     }
-
 
     @ReactMethod
     public void setWisetrackerDebugMode(String mode) {
