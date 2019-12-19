@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.co.wisetracker">
 
-    <application android:networkSecurityConfig="@xml/network_security_config">
+    <!-- Target SDK 28 이상시 application 태그에 아래 값을 설정하여 추가해 주세요. -->
+    <!-- android:networkSecurityConfig="@xml/network_security_config" -->
+    <application>
 
         <!-- 딥링크로 사용될 값을 직접 수정해 주세요. -->
         <activity
@@ -27,4 +29,5 @@
             android:value="true" />
 
     </application>
+    
 </manifest>

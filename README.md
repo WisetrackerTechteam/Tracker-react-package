@@ -39,8 +39,16 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 ```
 
 #### 2.2 AndroidManifest.xml 설정 (/react-plugin/android/src/main/AndroidManifest.xml)
+react-plugin 모듈에 기본 설정 항목들이 포함되어 있습니다. 필요시 사용자의 환경에 맞춰 설정값을 변경해 주세요.
 
-#### a) 디버깅 모드 설정
+#### a) Http 통신 허용 설정
+
+```xml
+<!-- targetSdkVersion 28일 경우 2.1에서 설정된 xml/network_security_config 파일을 application 태그에 추가해 주세요 -->
+<application android:networkSecurityConfig="@xml/network_security_config">
+```
+
+#### b) 디버깅 모드 설정
 
 ```xml
 <!-- 개발용 true 배포용 false 권장 -->
@@ -49,7 +57,7 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 	android:value="true" />
 ```
 
-#### b) 딥링크 설정
+#### c) 딥링크 설정
 딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
 
 ```xml
@@ -102,8 +110,9 @@ info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를
 import Wisetracker from 'react-plugin/wrapper/bridge.js';
 
 componentDidMount() {
-    Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");
-    Wisetracker.initialization();
+    Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");   // 앱키 입력
+    Wisetracker.initialization();  			// 초기화 함수 호출
+    Wisetracker.startPage("YOUR_PAGE_VALUE"); 		// 페이지 정보 입력
 }
 
 ```
