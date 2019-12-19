@@ -102,8 +102,9 @@ info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를
 import Wisetracker from 'react-plugin/wrapper/bridge.js';
 
 componentDidMount() {
-    Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");
-    Wisetracker.initialization();
+    Wisetracker.setWisetrackerAppkey("YOUR_APP_KEY");   // 앱키 입력
+    Wisetracker.initialization();  			// 초기화 함수 호출
+    Wisetracker.startPage("YOUR_PAGE_VALUE"); 		// 페이지 정보 입력
 }
 
 ```
