@@ -76,12 +76,21 @@ react-plugin 모듈에 기본 설정 항목들이 포함되어 있습니다. 필
 ```
 
 ### 3. IOS 리액트 플러그인 설정
-#### 1) XCode 프로젝트 세팅: 아래의 화면과 같이 설치한 플러그인 폴더 아래에 있는 파일들 중 아래 4가지 파일들을 프로젝트 경로에 가져다 놓습니다.(Drag & Drop
+#### 3.1 XCode 프로젝트 세팅: 아래의 화면과 같이 설치한 플러그인 폴더 아래에 있는 파일들 중 아래 4가지 파일들을 프로젝트 경로에 가져다 놓습니다.(Drag & Drop)
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2019/09/react_folder-1.png)
 
+##### 3.2 http 통신 허용 설정
+- http통신을 허용하기 위해 info.plist파일에 NSAppTransportSecurity를 아래와 같이 추가합니다
 
-#### 2) info.plist파일 디버깅 모드 세팅
-info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를 선탁하신뒤, 아래의 key/value값을 붙혀 넣습니다.
+```xml
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+```
+#### 3.3 info.plist파일 디버깅 모드 세팅
+info.plist 파일을 open할때 list로 보기가 아니라 source로 보기를 선택한 후, 아래와 같이 추가합니다
 
 ```xml
 // 개발용 true. 배포용 false 권장
@@ -89,16 +98,29 @@ info.plist 파일을 open할때 list로 보기 가 아니라 source로 보기를
     <string>true</string>
 ```
 
-#### 3) 외부 유입 경로 분석 ( Deeplink )
+#### 3.4 외부 유입 경로 분석 ( Deeplink )
 앱이 설치된 이후 DeepLink를 통해서 앱이 실행되는 경로 분석이 필요한 경우 
 네이티브 프로젝트의 AppDelegate 정의 항목중 openURL 함수 구현부에 아래와 같이 추가해줍니다.
 
  #import<WiseTracker/WiseTracker.h> 추가
 
-```Objective-c
+##### iOS 4.2–9.0
+```Objective-C
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
 	[WiseTracker urlRefererCheck:sourceApplication url:url];
 	return YES;
+}
+```
+
+OR
+
+##### iOS 9.0+
+
+```Objective-C
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    [WiseTracker urlRefererCheck:@"" url:url];
+    return YES;
+
 }
 ```
 
