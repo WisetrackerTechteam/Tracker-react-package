@@ -621,7 +621,7 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     public void setDoubleTest(double value) {
         try {
             Log.d("[wisetracker]", "setDoubleTest");
-            Log.d("[wisetracker]", value.toString());
+            Log.d("[wisetracker]", "value : " + value);
         } catch (Exception e) {
             Log.e(TAG, "sendImmediatelyClickData error !!", e);
         }
@@ -632,8 +632,9 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
         try {
             Log.d("[wisetracker]", "setDoubleArrayTest");
             for (int i = 0; i < value.length; i++) {
-                Log.d("[wisetracker]", i.toString());
+                Log.d("[wisetracker]", "value : " + i);
             }
+
         } catch (Exception e) {
             Log.e(TAG, "sendImmediatelyClickData error !!", e);
         }
@@ -643,7 +644,7 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     public void setIntTest(int value) {
         try {
             Log.d("[wisetracker]", "setIntTest");
-            Log.d("[wisetracker]", value.toString());
+            Log.d("[wisetracker]", "value : " + value);
         } catch (Exception e) {
             Log.e(TAG, "sendImmediatelyClickData error !!", e);
         }
@@ -654,7 +655,7 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
         try {
             Log.d("[wisetracker]", "setIntArrayTest");
             for (int i = 0; i < value.length; i++) {
-                Log.d("[wisetracker]", i.toString());
+                Log.d("[wisetracker]", "value : " + i);
             }
         } catch (Exception e) {
             Log.e(TAG, "sendImmediatelyClickData error !!", e);
