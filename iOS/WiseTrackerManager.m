@@ -48,10 +48,10 @@ RCT_EXPORT_METHOD(setGoal:(NSString *)key value:(NSInteger)value)
   [WiseTracker setGoal:key value:[NSNumber numberWithInteger:value]];
 }
 
-RCT_EXPORT_METHOD(endStartPage)
+RCT_EXPORT_METHOD(endStartPage:(NSString *)endPageId key:(NSString *)startPageId)
 {
-  [WiseTracker endPage:self];
-  [WiseTracker startPage:self];
+  [WiseTracker endPage:endPageId];
+  [WiseTracker startPage:startPageId];
 }
 
 RCT_EXPORT_METHOD(setGoalById:(NSString *)pageId key:(NSString *)key value:(NSInteger )value)
