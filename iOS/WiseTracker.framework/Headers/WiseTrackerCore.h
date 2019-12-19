@@ -26,7 +26,7 @@ FOUNDATION_EXPORT const unsigned char WiseTrackerVersionString[];
 #import "BSConfig.h"
 #import "WKTrackerViewController.h"
 //#include "Tracker.h"
-@import WebKit;
+#import <WebKit/WebKit.h>
 
 #if defined(__has_include) && __has_include(<uchar.h>)
 # include <uchar.h>
@@ -37,7 +37,7 @@ typedef uint_least32_t char32_t;
 typedef struct _NSZone NSZone;
 
 //WiseTracker Version
-#define WISETRACKER_SDK_VERSION @"21.2.51"
+#define WISETRACKER_SDK_VERSION @"21.3.17"
 
 @interface WiseTrackerCore : NSObject
 + (UIApplication *)application;
@@ -69,6 +69,7 @@ typedef struct _NSZone NSZone;
 //+ (void)checkReferrer:(NSString *)referrer;
 + (void)checkReferrerSet:(NSDictionary *)jsonDic;
 + (void)initEnd;
++ (void)initEnd:(NSDictionary *)launchOptions;
 + (BOOL)sendTransaction;
 + (BOOL)sendTransactionImmediate;
 + (BSMap *)builder:(id)obj;
@@ -90,10 +91,21 @@ typedef struct _NSZone NSZone;
 + (BSMap *)putRevenueDataArray:(NSString *)key value:(id)value;
 + (void)putSessionData:(NSString *)key value:(NSString *)value;
 + (BSMap *)putSessionReferrer:(NSString *)referrer;
-+ (void)setGoal:(NSString *)key value:(NSInteger)value;
++ (void) setAdChannel:(NSString*)code;
++ (void) setAdChannel:(NSString*)code period:(NSNumber*)period;
++ (void) setAdCampaign:(NSString*)code;
++ (void) setAdCampaign:(NSString*)code period:(NSNumber*)period;
++ (void) setAdKeyword:(NSString*)code;
++ (void) setAdKeyword:(NSString*)code period:(NSNumber*)period;
++ (void) setAdType:(NSString*)code;
++ (void) setAdType:(NSString*)code period:(NSNumber*)period;
++ (void)setGoal:(NSString *)key value:(NSNumber*)value;
 + (void)setAcceptPushReceived:(BOOL)value;
++ (void)setGoalPageIdentity:(NSString*)value;
 + (void)setGoalProduct:(NSString *)code;
 + (void)setGoalProductArray:(NSArray *)code;
++ (void)setGoalContents:(NSString *)value;
++ (void)setGoalContentsArray:(NSArray *)value;
 + (void)setGoalProductType:(NSString *)type;
 + (void)setGoalProductTypeArray:(NSArray *)type;
 + (void)setGoalProductCategory:(NSString *)code;
@@ -104,8 +116,12 @@ typedef struct _NSZone NSZone;
 + (void)setProductType:(NSString *)type;
 + (void)setProductCategory:(NSString *)code;
 + (void)setProductCategory:(NSString *)code name:(NSString *)name;
++ (void)setOrderNPaymentId:(NSString*)code;
++ (NSString*)createNPaySequenceKey;
 + (void)setOrderProduct:(NSString *)code;
 + (void)setOrderProductArray:(NSArray *)code;
++ (void)setOrderContents:(NSString *)value;
++ (void)setOrderContentsArray:(NSArray *)value;
 + (void)setOrderProductType:(NSString *)type;
 + (void)setOrderProductTypeArray:(NSArray *)type;
 + (void)setOrderProductCategory:(NSString *)code;
@@ -121,6 +137,9 @@ typedef struct _NSZone NSZone;
 + (void)setContents:(NSString *)value;
 + (BOOL)trkContents:(NSString *)value;
 + (void)setPageIdentity:(NSString *)value;
++ (void)setPageUrl:(NSString*)url;
++ (void)setStartWebViewLoad;
++ (void)setPageLoadTime:(long)time;
 + (BOOL)trkPageIdentity:(NSString *)value;
 + (void)setSearchKeyword:(NSString *)keyword;
 + (void)setGoalSearchKeyword:(NSString*)keyword;
@@ -150,10 +169,13 @@ typedef struct _NSZone NSZone;
 + (BOOL)containsRevenueData:(NSString *)key byId:(NSString*)pageId;
 + (BSMap *)putRevenueData:(NSString *)key value:(id)value byId:(NSString*)pageId;
 + (BSMap *)putRevenueDataArray:(NSString *)key value:(id)value byId:(NSString*)pageId;
-+ (void)setGoal:(NSString *)key value:(NSInteger)value byId:(NSString*)pageId;
++ (void)setGoal:(NSString *)key value:(NSNumber*)value byId:(NSString*)pageId;
 + (void)setAcceptPushReceived:(BOOL)value byId:(NSString*)pageId;
++ (void)setGoalPageIdentity:(NSString *)value byId:(NSString*)pageId;
 + (void)setGoalProduct:(NSString *)code byId:(NSString*)pageId;
 + (void)setGoalProductArray:(NSArray *)code byId:(NSString*)pageId;
++ (void)setGoalContents:(NSString *)value byId:(NSString*)pageId;
++ (void)setGoalContentsArray:(NSArray *)value byId:(NSString*)pageId;
 + (void)setGoalProductType:(NSString *)type byId:(NSString*)pageId;
 + (void)setGoalProductTypeArray:(NSArray *)type byId:(NSString*)pageId;
 + (void)setGoalProductCategory:(NSString *)code byId:(NSString*)pageId;
@@ -163,8 +185,11 @@ typedef struct _NSZone NSZone;
 + (void)setProductType:(NSString *)type byId:(NSString*)pageId;
 + (void)setProductCategory:(NSString *)code byId:(NSString*)pageId;
 + (void)setProductCategory:(NSString *)code name:(NSString *)name byId:(NSString*)pageId;
++ (void)setOrderNPaymentId:(NSString *)code byId:(NSString*)pageId;
 + (void)setOrderProduct:(NSString *)code byId:(NSString*)pageId;
 + (void)setOrderProductArray:(NSArray *)code byId:(NSString*)pageId;
++ (void)setOrderContents:(NSString *)value byId:(NSString*)pageId;
++ (void)setOrderContentsArray:(NSArray *)value byId:(NSString*)pageId;
 + (void)setOrderProductType:(NSString *)type byId:(NSString*)pageId;
 + (void)setOrderProductTypeArray:(NSArray *)type byId:(NSString*)pageId;
 + (void)setOrderProductCategory:(NSString *)code byId:(NSString*)pageId;
@@ -285,6 +310,9 @@ typedef struct _NSZone NSZone;
 +(void)setPushMessageData:(NSString*)pushNo pushTitle:(NSString*)title;
 +(void)setPushMessageData:(NSString*)pushNo pushTitle:(NSString*)title period:(NSInteger)period;
 
++(void)setPushMessageData:(NSString *)pushNo pushTitle:(NSString *)title application:(UIApplication *)application;
++(void)setPushMessageData:(NSString *)pushNo pushTitle:(NSString *)title period:(NSInteger)period application:(UIApplication *)application;
+
 // for UIWebView
 + (void)injectTracker:(UIWebView *)webView;
 + (void)reInjectTracker:(NSString*)evaluationId webView:(UIWebView*)webView;
@@ -332,6 +360,36 @@ typedef struct _NSZone NSZone;
 +(void)setOrderDateArray:(NSString*)orderDate itemCount:(NSInteger)itemCount;
 
 +(void) sendClickData:(NSString*)eventCode eventName:(NSString *)eventName;
++(void) sendGoalData;
 +(void)setFacebookReferrerData:(NSURL*)url;
+
+
+/**
+ * pncSubTp2~pncSubTp5 Api
+ **/
+
++ (void)setGoalProductType2:(NSString *)type;
++ (void)setGoalProductTypeArray2:(NSArray *)type;
++ (void)setProductType2:(NSString *)type;
++ (void)setOrderProductType2:(NSString *)type;
++ (void)setOrderProductTypeArray2:(NSArray *)type;
+
++ (void)setGoalProductType3:(NSString *)type;
++ (void)setGoalProductTypeArray3:(NSArray *)type;
++ (void)setProductType3:(NSString *)type;
++ (void)setOrderProductType3:(NSString *)type;
++ (void)setOrderProductTypeArray3:(NSArray *)type;
+
++ (void)setGoalProductType4:(NSString *)type;
++ (void)setGoalProductTypeArray4:(NSArray *)type;
++ (void)setProductType4:(NSString *)type;
++ (void)setOrderProductType4:(NSString *)type;
++ (void)setOrderProductTypeArray4:(NSArray *)type;
+
++ (void)setGoalProductType5:(NSString *)type;
++ (void)setGoalProductTypeArray5:(NSArray *)type;
++ (void)setProductType5:(NSString *)type;
++ (void)setOrderProductType5:(NSString *)type;
++ (void)setOrderProductTypeArray5:(NSArray *)type;
 
 @end

@@ -14,20 +14,27 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(setAppKey:(NSString *)appKey)
+RCT_EXPORT_METHOD(setWisetrackerAppkey:(NSString *)appKey)
 {
-  [WiseTracker applicationKey:appKey];
-  [WiseTracker setApplication:[UIApplication sharedApplication]];
-  dispatch_async(dispatch_get_main_queue(), ^{
-
-     [WiseTracker initEnd];
-  });
- 
+    [WiseTracker applicationKey:appKey];
+    [WiseTracker setApplication: RCTSharedApplication()];
 }
 
-RCT_EXPORT_METHOD(startPage)
+RCT_EXPORT_METHOD(initialization)
 {
-  [WiseTracker startPage:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [WiseTracker initEnd];
+    });
+}
+
+RCT_EXPORT_METHOD(startPage:(NSString *)pageId )
+{
+  [WiseTracker startPage:pageId];
+}
+
+RCT_EXPORT_METHOD(endPage:(NSString *)pageId)
+{
+  [WiseTracker endPage:pageId];
 }
 
 RCT_EXPORT_METHOD(sendTransactionImmediate)
@@ -38,7 +45,7 @@ RCT_EXPORT_METHOD(sendTransactionImmediate)
 RCT_EXPORT_METHOD(setGoal:(NSString *)key value:(NSInteger)value)
 {
   RCTLogInfo(@"This func call [WiseTracker setGoal]!!!! awesome :%@ %ld", key, (long)value);
-  [WiseTracker setGoal:key value:value];
+  [WiseTracker setGoal:key value:[NSNumber numberWithInteger:value]];
 }
 
 RCT_EXPORT_METHOD(endStartPage)
@@ -49,7 +56,7 @@ RCT_EXPORT_METHOD(endStartPage)
 
 RCT_EXPORT_METHOD(setGoalById:(NSString *)pageId key:(NSString *)key value:(NSInteger )value)
 {
-  [WiseTracker setGoal:key value:value byId:pageId];
+  [WiseTracker setGoal:key value:[NSNumber numberWithInteger:value] byId:pageId];
 }
 
 RCT_EXPORT_METHOD(setAcceptPushReceived:(BOOL)isAccept)
@@ -381,6 +388,11 @@ RCT_EXPORT_METHOD(setOrderQuantityArrayById:(NSArray *)quantityArray pageId:(NSS
 RCT_EXPORT_METHOD(sendClickData:(NSString *)eventCode eventName:(NSString *)eventName)
 {
   [WiseTracker sendClickData:eventCode eventName:eventName];
+}
+
+RCT_EXPORT_METHOD(sendGoalData)
+{
+  [WiseTracker sendGoalData];
 }
 
 RCT_EXPORT_METHOD(setPaymentTypeForOllehTv:(NSString *)mCd sCd:(NSString *)sCd)

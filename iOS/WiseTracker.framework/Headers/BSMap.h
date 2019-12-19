@@ -51,6 +51,8 @@
 - (void)putInitData:(NSString *)key value:(NSString *)value;
 - (NSMutableDictionary *)getPageDataMap;
 - (BSMap *)send;
-- (void)writeToTargetQueue;
+- (BOOL)writeToTargetQueue;
 - (void)clearPageMapData;
+- (NSMutableDictionary *)getGoalMap;
+- (void)clearGoalMapData;
 @end
