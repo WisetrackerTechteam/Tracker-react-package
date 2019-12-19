@@ -145,18 +145,18 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setGoal(String key, String value) {
+    public void setGoal(String key, double value) {
         try {
-            WiseTracker.setGoal(key, Double.valueOf(value));
+            WiseTracker.setGoal(key, value);
         } catch (Exception e) {
             Log.e(TAG, "setGoal error !!", e);
         }
     }
 
     @ReactMethod
-    public void setAcceptPushReceived(String isAccepted) {
+    public void setAcceptPushReceived(boolean isAccepted) {
         try {
-            WiseTracker.setAcceptPushReceived(Boolean.valueOf(isAccepted));
+            WiseTracker.setAcceptPushReceived(isAccepted);
         } catch (Exception e) {
             Log.e(TAG, "setAcceptPushReceived error !!", e);
         }
@@ -325,52 +325,42 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setOrderAmount(String value) {
+    public void setOrderAmount(double value) {
         try {
-            WiseTracker.setOrderAmount(Double.valueOf(value));
+            WiseTracker.setOrderAmount(value);
         } catch (Exception e) {
             Log.e(TAG, "setOrderAmount error !!", e);
         }
     }
 
     @ReactMethod
-    public void setOrderAmountArray(String[] array) {
+    public void setOrderAmountArray(double[] array) {
         try {
-            if (array == null || array.length == 0) {
+            if (array.length == 0) {
                 return;
             }
-            double[] valueArray = new double[array.length];
-            for (int i = 0; i < array.length; i++) {
-                valueArray[i] = Double.valueOf(array[i]);
-                Log.d("cordova", "value[" + i + "] = " + valueArray[i]);
-            }
-            WiseTracker.setOrderAmountArray(valueArray);
+            WiseTracker.setOrderAmountArray(array);
         } catch (Exception e) {
             Log.e(TAG, "setOrderAmountArray error !!", e);
         }
     }
 
     @ReactMethod
-    public void setOrderConversionData(String key, String value) {
+    public void setOrderConversionData(String key, double value) {
         try {
-            WiseTracker.setOrderConversionData(key, Double.valueOf(value));
+            WiseTracker.setOrderConversionData(key, value);
         } catch (Exception e) {
             Log.e(TAG, "setOrderConversionData error !!", e);
         }
     }
 
     @ReactMethod
-    public void setOrderConversionDataArray(String key, String[] array) {
+    public void setOrderConversionDataArray(String key, double[] array) {
         try {
-            if (array == null || array.length == 0) {
+            if (array.length == 0) {
                 return;
             }
-            double[] valueArray = new double[array.length];
-            for (int i = 0; i < array.length; i++) {
-                valueArray[i] = Double.valueOf(array[i]);
-                Log.d("cordova", "value[" + i + "] = " + valueArray[i]);
-            }
-            WiseTracker.setOrderConversionDataArray(key, valueArray);
+            WiseTracker.setOrderConversionDataArray(key, array);
         } catch (Exception e) {
             Log.e(TAG, "setOrderConversionDataArray error !!", e);
         }
@@ -422,25 +412,21 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setOrderQuantity(String value) {
+    public void setOrderQuantity(int value) {
         try {
-            WiseTracker.setOrderQuantity(Integer.valueOf(value));
+            WiseTracker.setOrderQuantity(value);
         } catch (Exception e) {
             Log.e(TAG, "setOrderQuantity error !!", e);
         }
     }
 
     @ReactMethod
-    public void setOrderQuantityArray(String[] array) {
+    public void setOrderQuantityArray(int[] array) {
         try {
-            if (array == null || array.length == 0) {
+            if (array.length == 0) {
                 return;
             }
-            int[] valueArray = new int[array.length];
-            for (int i = 0; i < array.length; i++) {
-                valueArray[i] = Integer.valueOf(array[i]);
-            }
-            WiseTracker.setOrderQuantityArray(valueArray);
+            WiseTracker.setOrderQuantityArray(array);
         } catch (Exception e) {
             Log.e(TAG, "setOrderQuantityArray error !!", e);
         }
@@ -501,9 +487,9 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setSearchKeywordResult(String count) {
+    public void setSearchKeywordResult(int count) {
         try {
-            WiseTracker.setSearchKeywordResult(Integer.valueOf(count));
+            WiseTracker.setSearchKeywordResult(count);
         } catch (Exception e) {
             Log.e(TAG, "setSearchKeywordResult error !!", e);
         }
@@ -573,9 +559,9 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setOrderDateArray(String orderDate, String count) {
+    public void setOrderDateArray(String orderDate, int count) {
         try {
-            WiseTracker.setOrderDateArray(orderDate, Integer.valueOf(count));
+            WiseTracker.setOrderDateArray(orderDate, count);
         } catch (Exception e) {
             Log.e(TAG, "setOrderDateArray error !!", e);
         }
@@ -591,9 +577,9 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setWisetrackerDebugMode(String mode) {
+    public void setWisetrackerDebugMode(boolean mode) {
         try {
-            WiseTracker.setWisetrackerDebugMode(Boolean.valueOf(mode));
+            WiseTracker.setWisetrackerDebugMode(mode);
         } catch (Exception e) {
             Log.e(TAG, "setWisetrackerDebugMode error !!", e);
         }
@@ -612,51 +598,6 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     public void sendImmediatelyClickData(String key, String value) {
         try {
             WiseTracker.sendImmediatelyClickData(key, value);
-        } catch (Exception e) {
-            Log.e(TAG, "sendImmediatelyClickData error !!", e);
-        }
-    }
-
-    @ReactMethod
-    public void setDoubleTest(double value) {
-        try {
-            Log.d("[wisetracker]", "setDoubleTest");
-            Log.d("[wisetracker]", "value : " + value);
-        } catch (Exception e) {
-            Log.e(TAG, "sendImmediatelyClickData error !!", e);
-        }
-    }
-
-    @ReactMethod
-    public void setDoubleArrayTest(double[] value) {
-        try {
-            Log.d("[wisetracker]", "setDoubleArrayTest");
-            for (int i = 0; i < value.length; i++) {
-                Log.d("[wisetracker]", "value : " + i);
-            }
-
-        } catch (Exception e) {
-            Log.e(TAG, "sendImmediatelyClickData error !!", e);
-        }
-    }
-
-    @ReactMethod
-    public void setIntTest(int value) {
-        try {
-            Log.d("[wisetracker]", "setIntTest");
-            Log.d("[wisetracker]", "value : " + value);
-        } catch (Exception e) {
-            Log.e(TAG, "sendImmediatelyClickData error !!", e);
-        }
-    }
-
-    @ReactMethod
-    public void setIntArrayTest(int[] value) {
-        try {
-            Log.d("[wisetracker]", "setIntArrayTest");
-            for (int i = 0; i < value.length; i++) {
-                Log.d("[wisetracker]", "value : " + i);
-            }
         } catch (Exception e) {
             Log.e(TAG, "sendImmediatelyClickData error !!", e);
         }
