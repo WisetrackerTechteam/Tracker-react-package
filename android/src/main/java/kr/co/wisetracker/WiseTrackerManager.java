@@ -1,7 +1,6 @@
 package kr.co.wisetracker;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -28,7 +27,6 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void initialization() {
         try {
-            Toast.makeText(getReactApplicationContext(), "init", Toast.LENGTH_SHORT).show();
             WiseTracker.init(getReactApplicationContext());
         } catch (Exception e) {
             Log.e(TAG, "initialization error !!", e);
