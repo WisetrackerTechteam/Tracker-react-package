@@ -23,9 +23,26 @@ http://report.wisetracker.co.kr 로그인
 
 ### 2. Android 리액트 플러그인 설정
 
-#### 2.1 Http 통신 허용 설정 
-리액트 프로젝트의 **targetSdkVersion 28 이상**일 경우 http 통신 허용 설정을 해야 합니다.
-app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 내용 추가
+#### a) App Key 등록
+
+```xml
+<!-- 발급 받은 AppKey meta-data 추가 -->
+<meta-data
+    android:name="WiseTrackerKey"
+    android:value="YOUR_APP_KEY" />
+```
+
+#### b) Http 통신 허용 설정
+코르도바 안드로이드 프로젝트의 **targetSdkVersion 28 이상**일 경우 http 통신 허용 설정을 해야 합니다.
+
+```xml
+<!-- AndroidManifest.xml -->
+<application
+	android:icon="@mipmap/ic_launcher"
+	android:label="@string/app_name"
+	android:networkSecurityConfig="@xml/network_security_config"
+	android:theme="@style/AppTheme">
+```
 
 ```xml
 <!-- app/res/xml/network_security_config.xml -->
@@ -38,26 +55,16 @@ app/res/xml/network_security_config (**없으면 생성**) 위치에 아래의 �
 </network-security-config>
 ```
 
-#### 2.2 AndroidManifest.xml 설정 (/react-plugin/android/src/main/AndroidManifest.xml)
-react-plugin 모듈에 기본 설정 항목들이 포함되어 있습니다. 필요시 사용자의 환경에 맞춰 설정값을 변경해 주세요.
-
-#### a) Http 통신 허용 설정
-
-```xml
-<!-- targetSdkVersion 28일 경우 2.1에서 설정된 xml/network_security_config 파일을 application 태그에 추가해 주세요 -->
-<application android:networkSecurityConfig="@xml/network_security_config">
-```
-
-#### b) 디버깅 모드 설정
+#### c) 디버깅 모드 설정
 
 ```xml
 <!-- 개발용 true 배포용 false 권장 -->
-<meta-data
+<meta-data 
 	android:name="WiseTrackerLogState" 
 	android:value="true" />
 ```
 
-#### c) 딥링크 설정
+#### d) 딥링크 설정
 딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
 
 ```xml
