@@ -80,6 +80,24 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void onPlayStart(int period) {
+        try {
+            WiseTracker.onPlayStart(getReactApplicationContext(), period);
+        } catch (Exception e) {
+            Log.e(TAG, "onPlayStart error !!", e);
+        }
+    }
+
+    @ReactMethod
+    public void onPlayStop() {
+        try {
+            WiseTracker.onPlayStop(getReactApplicationContext());
+        } catch (Exception e) {
+            Log.e(TAG, "onPlayStop error !!", e);
+        }
+    }
+
+    @ReactMethod
     public void startPage(String data) {
         try {
             WiseTracker.startPage(data);
