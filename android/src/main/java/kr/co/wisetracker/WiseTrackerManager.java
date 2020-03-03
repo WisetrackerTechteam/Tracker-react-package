@@ -28,6 +28,7 @@ public class WiseTrackerManager extends ReactContextBaseJavaModule {
     public void initialization() {
         try {
             WiseTracker.init(getReactApplicationContext());
+            WiseTracker.startPage("REACT_APP_START");
         } catch (Exception e) {
             Log.e(TAG, "initialization error !!", e);
         }
