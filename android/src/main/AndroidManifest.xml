@@ -28,6 +28,10 @@
             android:name="WiseTrackerLogState"
             android:value="true" />
 
+        <meta-data
+            android:name="WiseTrackerKey"
+            android:value="YOUR_APP_KEY" />
+
     </application>
     
 </manifest>
