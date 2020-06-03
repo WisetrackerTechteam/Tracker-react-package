@@ -11,6 +11,9 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+/**
+ * 브릿지 모듈 등록 class
+ */
 public class BridgePackage implements ReactPackage {
 
     @Nonnull

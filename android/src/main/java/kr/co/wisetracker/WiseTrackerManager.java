@@ -10,6 +10,10 @@ import javax.annotation.Nonnull;
 
 import kr.co.wisetracker.tracker.WiseTracker;
 
+/**
+ * react <-> react android 플러그인 브릿지 클래스
+ * react에서 넘어온 데이터를 통해 Natvie SDK 호출
+ */
 public class WiseTrackerManager extends ReactContextBaseJavaModule {
 
     private final String TAG = "WiseTrackerManager";
